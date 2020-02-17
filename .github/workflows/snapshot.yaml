@@ -12,7 +12,7 @@ jobs:
             name: Checkout
             uses: actions/checkout@v2
             - run: |
-                git fetch --prune --unshallow
+            git fetch --prune --unshallow
         -
             name: Set up Go
             uses: actions/setup-go@v1
@@ -22,8 +22,8 @@ jobs:
             name: Prepare Env vars
             id: prepare
             run: |
-                echo ::set-output name=build_time::$(date -u +"%Y-%m-%dT%H:%M:%S")
-                echo ::set-output name=build_version::$(git describe --tags 2>/dev/null || echo "v0.0.0")
+            echo ::set-output name=build_time::$(date -u +"%Y-%m-%dT%H:%M:%S")
+            echo ::set-output name=build_version::$(git describe --tags 2>/dev/null || echo "v0.0.0")
         -
             name: Build using goreleaser
             uses: goreleaser/goreleaser-action@v1
