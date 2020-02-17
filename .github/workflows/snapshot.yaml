@@ -39,4 +39,4 @@ jobs:
             name: output
             run: |
                 echo $(pwd)
-                echo /home/runner/work/vsync/vsync/dist/vsync_linux_amd64/vsync --version
+                /home/runner/work/vsync/vsync/dist/vsync_linux_amd64/vsync --version
