@@ -11,19 +11,27 @@ jobs:
         -
             name: Checkout
             uses: actions/checkout@v2
-        -
-            name: Unshallow
-            run: git fetch --prune --unshallow
+            - run: |
+                git fetch --prune --unshallow
         -
             name: Set up Go
             uses: actions/setup-go@v1
             with:
                 go-version: 1.13.x
         -
-            name: Run GoReleaser
+            name: Prepare Env vars
+            id: prepare
+            run: |
+                echo ::set-output name=build_time::$(date -u +"%Y-%m-%dT%H:%M:%S")
+                echo ::set-output name=build_version::$(git describe --tags 2>/dev/null || echo "v0.0.0")
+        -
+            name: Build using goreleaser
             uses: goreleaser/goreleaser-action@v1
             with:
                 version: latest
                 args: release --snapshot --rm-dist
             env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                BUILD_VERSION: ${{ jobs.prepare.env.build_version }}
+                BUILD_COMMIT: ${{ github.sha }}
+                BUILD_TIME: ${{ jobs.prepare.env.build_time }}
