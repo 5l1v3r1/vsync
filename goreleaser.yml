@@ -2,7 +2,7 @@ before:
     hooks:
       - go mod download
       - go generate ./...
-  
+
   builds:
     -
       main: ./main.go
@@ -14,13 +14,12 @@ before:
         - linux
       goarch:
         - amd64
-  
+
   archive:
     name_template: "{{ .ProjectName }}_{{ .Env.BUILD_VERSION }}_{{ .Os }}"
-  
+
   snapshot:
     name_template: "{{ .Env.BUILD_VERSION }}"
-  
+
   checksum:
     name_template: "{{ .ProjectName }}_{{ .Env.BUILD_VERSION }}_checksums.txt"
- 
