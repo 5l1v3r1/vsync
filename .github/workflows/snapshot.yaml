@@ -32,6 +32,6 @@ jobs:
                 args: release --snapshot --rm-dist
             env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                BUILD_VERSION: ${{ job.prepare.env.build_version }}
+                BUILD_VERSION: ${{ job.prepare.outputs.build_version }}
                 BUILD_COMMIT: ${{ github.sha }}
-                BUILD_TIME: ${{ job.prepare.env.build_time }}
+                BUILD_TIME: ${{ job.prepare.outputs.build_time }}
