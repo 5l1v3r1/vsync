@@ -27,6 +27,7 @@ jobs:
         -
             name: output
             run: |
+                echo commit: ${{ github.sha }}
                 echo version: ${{ job.prepare.outputs.build_version }}
                 echo time: ${{ job.prepare.outputs.build_time }}
         -
