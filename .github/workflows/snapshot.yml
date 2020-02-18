@@ -38,21 +38,6 @@ jobs:
                 ./vsync --version
                 go test ./...
         -
-            name: Prepare for integrations tests
-            run: |
-                curl -o vault_1.2.1_linux_amd64.zip https://releases.hashicorp.com/vault/1.2.1/vault_1.2.1_linux_amd64.zip
-                unzip vault_1.2.1_linux_amd64.zip -d /tmp
-                ls -lah /tmp
-                alias vault=/tmp/vault
-                vault --version
-                . ./scripts/local_bootstrap.sh
-        -
-            name: Integration tests
-            run: |
-                echo hi
-                echo ${{ github.ref }}
-                curl http://127.0.0.1:7200/v1/sys/seal-status
-        -
             name: Snapshot using goreleaser
             uses: goreleaser/goreleaser-action@v1
             with:
