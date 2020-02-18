@@ -43,7 +43,7 @@ jobs:
                 curl -o vault_1.2.1_linux_amd64.zip https://releases.hashicorp.com/vault/1.2.1/vault_1.2.1_linux_amd64.zip
                 unzip vault_1.2.1_linux_amd64.zip -d /tmp
                 ls -lah /tmp
-                mv /tmp/vault /usr/local/bin/
+                mv /tmp/vault /usr/local/sbin/
                 vault --version
                 . ./scripts/local_bootstrap.sh
         -
