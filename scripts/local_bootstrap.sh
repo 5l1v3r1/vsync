@@ -46,6 +46,7 @@ path "sys/mounts" {
 }
 
 # destroy
+set +eo
 docker stop originC && docker rm originC
 docker stop agent1 && docker rm agent1
 docker stop originV && docker rm originV
@@ -54,7 +55,7 @@ docker stop destinationC && docker rm destinationC
 docker stop agent2 && docker rm agent2
 docker stop destinationV && docker rm destinationV
 docker network rm vsync
-
+set -eo
 # create
 docker network create vsync
 
